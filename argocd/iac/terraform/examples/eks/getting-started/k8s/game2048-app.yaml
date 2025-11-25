@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  annotations:
+    argocd.argoproj.io/manifest-generate-paths: '.'
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+  name: game-2048
+spec:
+  destination:
+    name: in-cluster
+    namespace: argocd
+  project: default
+  source:
+    path: argocd/iac/terraform/examples/eks/getting-started/game2048
+    repoURL: https://github.com/lrochette/GitOps-Bridge
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - PruneLast=true
