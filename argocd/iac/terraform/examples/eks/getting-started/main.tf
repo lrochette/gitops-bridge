@@ -78,7 +78,7 @@ locals {
   }
   oss_addons = {
     enable_argocd                          = try(var.addons.enable_argocd, true)
-    enable_argo_rollouts                   = try(var.addons.enable_argo_rollouts, false)
+    enable_argo_rollouts                   = try(var.addons.enable_argo_rollouts, true)
     enable_argo_events                     = try(var.addons.enable_argo_events, false)
     enable_argo_workflows                  = try(var.addons.enable_argo_workflows, false)
     enable_cluster_proportional_autoscaler = try(var.addons.enable_cluster_proportional_autoscaler, false)
