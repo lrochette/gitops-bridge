@@ -116,11 +116,17 @@ locals {
     },
     {
       workload_repo_url      = local.gitops_workload_url
-      workload_repo_basepath = local.gitops_workload_basepath
+      workload_repo_basepath = local.gitops_sworkload_basepath
       workload_repo_path     = local.gitops_workload_path
       workload_repo_revision = local.gitops_workload_revision
     }
   )
+
+  argocd_apps = {
+    addons = file("${path.module}/bootstrap/addons.yaml")
+    games = file("${path.module}/k8s/game-2048.yaml")
+    workloads = file("${path.module}/bootstrap/workloads.yaml")
+  }
 
   tags = {
     Blueprint  = local.name
@@ -138,6 +144,7 @@ module "gitops_bridge_bootstrap" {
     metadata = local.addons_metadata
     addons   = local.addons
   }
+  apps = local.argocd_apps
 }
 
 ################################################################################
