@@ -75,3 +75,16 @@ variable "gitops_workload_path" {
   type        = string
   default     = "getting-started/k8s"
 }
+
+#
+# Local variables for terraform.tfvars
+#
+addons = {
+  enable_argocd = true
+  enable_argo_rollouts = true
+  enable_argo_workflows = true
+  enable_external_secrets = true
+}
+region = "us-east-1"
+gitops_addons_org = "https://github.com/lrochette"
+gitops_workload_org = "https://github.com/lrochette"
